@@ -4,6 +4,8 @@ A 2D multiplayer jumpy shooty platformer for you and your friends to murder each
 
 # How To #
 
-Click the ? button on the title screen for a fancykeyboardthattookverylongtomakeandimveryproudof that shows the controls for each player in their color.
+Open index.html in a browser to play.  Click the ? button on the title screen for a fancykeyboardthattookverylongtomakeandimveryproudof that shows the controls for each player in their color.  Get the gun first and slaughter everyone.
 
-Get the gun first and slaughter everyone.
+# Updates #
+
+Moar bug fixes and stuff comming soon.
