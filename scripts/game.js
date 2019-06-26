@@ -56,7 +56,7 @@ $.init = function(){
 	$.winTimer = 0;
 	
 	$.selectedLevel = 0;
-	$.levelNames = ['platform panic', 'maze',  'guns for all'];
+	$.levelNames = ['platform panic', 'maze',  'maze2', 'guns for all', 'towers', 'arena'];
 	
 	/*- Controls for me and da bois -*/
 	$.controls = [
@@ -448,6 +448,9 @@ $.render = function(){
 				$.winText += (2.5 - $.winText) / 10;
 				$.fade += (1 - $.fade) / 10;
 			}else{
+				if(!$.gameover){
+					$.audio.playSound('game.win');
+				}
 				$.gameover = true;
 			}
 		}
@@ -495,7 +498,7 @@ Foreground
 =================================================================================================================*/
 $.renderForeground = function(){
 	$.fgCtx.clearRect(0, 0, $.screen.w, $.screen.h);
-     $.fgCtx.fillStyle = "rgba(100, 100, 100, 0.1)";
+     $.fgCtx.fillStyle = "rgba(100, 100, 100, 0.2)";
      for(var i = 0; i < $.screen.h; i += 2){
           $.fgCtx.fillRect(0, i, $.screen.w, 1);
      }

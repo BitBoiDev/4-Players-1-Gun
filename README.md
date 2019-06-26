@@ -1,11 +1,9 @@
 # 4P1G Yaaay! #
 
-A 2D multiplayer jumpy shooty platformer for you and your friends to murder eachother.  Look at my source code if you want to know how not to code well  :}
+A little 4-player single screen jumpy shooty platformer for you and your friends to murder eachother.  Look at my source code if you want to know not how to code well  :}
 
 # How To #
 
-Open index.html in a browser to play.  Click the ? button on the title screen for a fancykeyboardthattookverylongtomakeandimveryproudof that shows the controls for each player in their color.  Get the gun first and slaughter everyone.
+Click the ? button on the title screen for a superlaggyfancykeyboardthattookverylongtomakeandimveryproudof that shows the controls for each player in their color.
 
-# Updates #
-
-Moar bug fixes and stuff comming soon.
+Get the gun first and slaughter everyone.

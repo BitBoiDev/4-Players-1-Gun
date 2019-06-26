@@ -10,8 +10,8 @@ $.Pickup.prototype = {
 			}
 			var distance = $.math.distance(this.position, player.position);
 			if(distance <= 30 && !player.isDead){
-				this.position.x += (player.position.x - this.position.x) / 3;
-				this.position.y += (player.position.y - this.position.y) / 3;
+				this.position.x += (player.position.x - this.position.x) / 2;
+				this.position.y += (player.position.y - this.position.y) / 2;
 				if(distance <= 5){
 					if(this.type === 'gun' && !player.gun.enabled){
 						player.gun.enabled = true;

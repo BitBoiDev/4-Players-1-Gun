@@ -3,6 +3,7 @@ $.Player = function(data){
 
 	this.speed = {x: 0, y: 0};
 	this.bounds = {x: 0, y: 0, w: 18, h: 30};
+	this.angle = 0;
 	
 	this.arms = 0;
 	this.legs = 0;
@@ -25,7 +26,7 @@ $.Player = function(data){
 	this.isDead = false;
 	this.gun = {
 		fireRate: 10,
-		damage: 0.5,
+		damage: 0.4,
 		enabled: false
 	};
 	
@@ -61,7 +62,7 @@ $.Player.prototype = {
 		}else if($.state === 'start'){
 			this.speed.x = 0;
 			this.speed.y = 0;
-			this.onGround = true;
+			this.onGround = false;
 		}
 		
 		this.position.x += this.speed.x * $.dt;
@@ -73,14 +74,14 @@ $.Player.prototype = {
 			$.bounds.resolveCollisions(this, $.tiles, {x: 0, y: this.speed.y});
 		}
 		
+		this.speed.y += 1;
+		
 		if(this.isDead){
-			this.speed.y += (-2 - this.speed.y) / 50;
+			this.angle += this.speed.x / 100;
 			this.legs = Math.sin(this.time * this.direction * 0.1);
 			this.arms = -Math.PI / 4 - Math.sin(this.time * this.direction * 0.1);
 			return;
 		}
-		
-		this.speed.y += 1;
 		
 		//Movement
 		var controls = $.controls[this.type];
@@ -202,49 +203,18 @@ $.Player.prototype = {
 					dynamic: true
 				}
 			}));
-			if($.players.length - 1 <= 1){
-				$.audio.playSound('game.win');
-			}
 			this.isDead = true;
 			this.gun.enabled = false;
 			this.shield = 0;
+			this.speed.y = -10;
+			this.speed.x = -this.direction * 4;
 		}
 	},
 	
 	render: function(ctx){
 		ctx.save();
 		ctx.translate(this.position.x, this.position.y + this.crouch);
-		if(this.isDead){
-			ctx.globalAlpha = 0.1;
-		}
-		//Shield
-		if(this.shield > 0){
-			var angle = this.time / 10;
-			var radius = (20 + Math.sin($.ct / 300)) * this.shieldRadius;
-			ctx.fillStyle = "rgba(0, 60, 255, 0.5)";
-			ctx.beginPath();
-			ctx.arc(0, 0, radius, 0, Math.PI * 2, true);
-			ctx.fill();
-			ctx.fillStyle = "rgba(0, 120, 255, 0.8)";
-			ctx.beginPath();
-			ctx.arc(0, 0, radius / 2, 0, Math.PI * 2, true);
-			ctx.fill();
-			ctx.beginPath();
-			ctx.moveTo(0, 0);
-			ctx.arc(0, 0, radius, angle, angle - Math.PI / 4, true);
-			ctx.closePath();
-			ctx.fill();
-			ctx.beginPath();
-			ctx.moveTo(0, 0);
-			ctx.arc(0, 0, radius, angle + Math.PI, angle + Math.PI - Math.PI / 4, true);
-			ctx.closePath();
-			ctx.fill();
-			ctx.fillStyle = "rgba(255, 255, 255, " + (this.shieldFlash) + ")";
-			ctx.beginPath();
-			ctx.arc(0, 0, radius, 0, Math.PI * 2, false);
-			ctx.fill();
-			this.shieldFlash -= this.shieldFlash / 10;
-		}
+		ctx.rotate(this.angle);
 		ctx.scale(-this.direction, 1);
 		//Arms
 		var angle = this.arms;
@@ -326,6 +296,35 @@ $.Player.prototype = {
 		ctx.beginPath();
 		ctx.arc(2, 0, 2, 0, Math.PI * 2, false);
 		ctx.fill();
+		ctx.scale(this.direction, 1);
+		//Shield
+		if(this.shield > 0){
+			var angle = this.time / 10;
+			var radius = (20 + Math.sin($.ct / 300)) * this.shieldRadius;
+			ctx.fillStyle = "rgba(0, 60, 255, 0.7)";
+			ctx.beginPath();
+			ctx.arc(0, 0, radius, 0, Math.PI * 2, true);
+			ctx.fill();
+			ctx.fillStyle = "rgba(0, 120, 255, 0.4)";
+			ctx.beginPath();
+			ctx.arc(0, 0, radius / 2, 0, Math.PI * 2, true);
+			ctx.fill();
+			ctx.beginPath();
+			ctx.moveTo(0, 0);
+			ctx.arc(0, 0, radius, angle, angle - Math.PI / 4, true);
+			ctx.closePath();
+			ctx.fill();
+			ctx.beginPath();
+			ctx.moveTo(0, 0);
+			ctx.arc(0, 0, radius, angle + Math.PI, angle + Math.PI - Math.PI / 4, true);
+			ctx.closePath();
+			ctx.fill();
+			ctx.fillStyle = "rgba(255, 255, 255, " + (this.shieldFlash) + ")";
+			ctx.beginPath();
+			ctx.arc(0, 0, radius, 0, Math.PI * 2, false);
+			ctx.fill();
+			this.shieldFlash -= this.shieldFlash / 10;
+		}
 		ctx.restore();
 	},
 	
@@ -339,5 +338,6 @@ $.Player.prototype = {
 		this.gun.enabled = false;
 		this.shield = 0;
 		this.isDead = false;
+		this.angle = 0;
 	}
 };
