@@ -240,28 +240,12 @@ $.render = function(){
 			ctx: $.ctx,
 			x: $.screen.w / 2,
 			y: 100,
-			text: "4 Players",
+			text: "SHOOTETH",
 			scale: 5,
 			spacing: 4,
 			hAlign: "center",
 			vAlign: "center"
 		});
-		$.ctx.stroke();
-		$.ctx.fill();
-		$.ctx.strokeStyle = "hsla(" + (200 + Math.abs(Math.sin($.ct * 0.001) * 100)) + ", 90%, 100%, 1)";
-		$.ctx.fillStyle = "rgba(20, 20, 20, 1)";
-		$.drawText({
-			ctx: $.ctx,
-			x: $.screen.w / 2,
-			y: 135,
-			text: "1 Gun",
-			scale: 5,
-			spacing: 4,
-			hAlign: "center",
-			vAlign: "center"
-		});
-		$.ctx.stroke();
-		$.ctx.fill();
 		
 		$.ctx.fillStyle = "rgba(10, 10, 10, 1)";
 		$.ctx.strokeStyle = "rgba(200, 200, 200, 1)";
