@@ -246,8 +246,8 @@ $.render = function(){
 			hAlign: "center",
 			vAlign: "center"
 		});
-		$.ctx.fill();
 		$.ctx.stroke();
+		$.ctx.fill();
 		
 		$.ctx.fillStyle = "rgba(10, 10, 10, 1)";
 		$.ctx.strokeStyle = "rgba(200, 200, 200, 1)";
