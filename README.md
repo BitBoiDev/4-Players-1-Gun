@@ -1,3 +1,3 @@
 # SHOOTETH
 
-A small game made with Javascript (ew)
+A small game made with Javascript
