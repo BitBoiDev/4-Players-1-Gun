@@ -246,6 +246,8 @@ $.render = function(){
 			hAlign: "center",
 			vAlign: "center"
 		});
+		$.ctx.fill();
+		$.ctx.stroke();
 		
 		$.ctx.fillStyle = "rgba(10, 10, 10, 1)";
 		$.ctx.strokeStyle = "rgba(200, 200, 200, 1)";
@@ -260,7 +262,7 @@ $.render = function(){
 			ctx: $.ctx,
 			x: 5,
 			y: $.screen.h - 5,
-			text: "By BitBoi",
+			text: "By EYEZAK",
 			scale: 2,
 			hAlign: "left",
 			vAlign: "bottom"
